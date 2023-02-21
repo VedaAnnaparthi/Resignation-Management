@@ -1,0 +1,12 @@
+<web-app>
+	<display-name>Employee Service Request</display-name>
+	<servlet>
+		<servlet-name>resignationRequest</servlet-name>
+		<servlet-class>com.arshaa.request.RequestServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>resignationRequest</servlet-name>
+		<url-pattern>/create</url-pattern>
+	</servlet-mapping>
+</web-app>
