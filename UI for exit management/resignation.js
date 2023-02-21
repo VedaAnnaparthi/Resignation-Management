@@ -3,6 +3,7 @@ document.getElementById('resignationForm').addEventListener('submit', raiseResig
 function formValidation() {
 
   var resignationRequestId = document.getElementById('resignationRequestId').value
+  console.log(resignationRequestId);
   var exitReason = document.getElementById('exitReason').value
   var description = document.getElementById('description').value
   // var reasonType = document.getElementById('reasonType').value
@@ -28,7 +29,9 @@ function formValidation() {
   return true
 }
 
-function raiseResignationRequest() {
+function raiseResignationRequest(e) {
+  
+  if (e && e.preventDefault) { e.preventDefault(); }
   if (formValidation() == true) {
     
     var resignationRequestId = document.getElementById('resignationRequestId').value;
@@ -46,7 +49,7 @@ function raiseResignationRequest() {
     const ResignationRequest = {};
 
     
-
+    
     let url =  "http://localhost:9001/ResignationRequest/raiseResignationRequest?";
 
    
@@ -54,6 +57,8 @@ function raiseResignationRequest() {
     ResignationRequest.exitReason = document.getElementById('exitReason').value;
     ResignationRequest.description = document.getElementById('description').value;
     
+
+    console.log(ResignationRequest);
     
       Object.keys(ResignationRequest).forEach((key) => {
         url += key + "=" + ResignationRequest[key] + "&";
@@ -65,8 +70,8 @@ function raiseResignationRequest() {
   })
       .then((response) => response.json())
       .then((data) => {
-          if (data.status) {
-              alert(data.message);
+          if (data > 1) {
+              alert("data posted");
           }
       })
       .catch((error) => console.error(error));
@@ -77,6 +82,7 @@ function raiseResignationRequest() {
       description.value = "";
 
     }
+  console.log("u clicked");
   }
 
 
